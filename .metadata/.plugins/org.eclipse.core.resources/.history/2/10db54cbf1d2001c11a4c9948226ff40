@@ -1,0 +1,101 @@
+#include "FreeRTOS.h"
+#include "task.h"
+//#include "drivers.h"
+
+
+/* Freescale includes. */
+#include "fsl_device_registers.h"
+#include "fsl_debug_console.h"
+#include "board.h"
+
+#include "pin_mux.h"
+
+#define DRV_LEDS_GREEN 1
+#define DRV_LEDS_RED 2
+
+void highLedGreen(){
+	SIM->SCGC5 |= (1 << 12) | (1 << 13);
+	//PORTD->PCR[5] |= (1 << 8);
+	//GPIOD->PDDR |= (1 << 5);
+	//GPIOD->PTOR |= (1 << 5);
+	LED_GREEN_INIT(1);
+	LED_GREEN_ON();
+	LED_GREEN_TOGGLE();
+}
+
+void highLedRed(){
+	SIM->SCGC5 |= (1 << 12) | (1 << 13);
+	// PORTE->PCR[31] |= (1 << 8);
+	// GPIOE->PDDR |= (1 << 31);
+	// GPIOE->PTOR |= (1 << 31);
+	LED_RED_INIT();
+	LED_RED_ON();
+	LED_RED_TOGGLE();
+}
+
+/*void drvLedsSet(int led) {
+	SIM->SCGC5 |= (1 << 12) | (1 << 13);
+	if(led == 1) {
+		PORTD->PCR[5] |= (1 << 8);
+		GPIOD->PDDR |= (1 << 5);
+		GPIOD->PTOR |= (1 << 5);
+	} else {
+		PORTE->PCR[31] |= (1 << 8);
+		GPIOE->PDDR |= (1 << 31);
+		GPIOE->PTOR |= (1 << 31);
+	}
+}*/
+
+void delay1(){
+	unsigned int i;
+
+	for(i = 0; i < 1000000; i++){
+		__asm volatile("nop");
+	}
+}
+
+void delay2(){
+	unsigned int i;
+
+	for(i = 0; i < 2000000; i++){
+		__asm volatile("nop");
+	}
+}
+
+void taskLed1(void *pvParameters){
+	for (;;) {
+		// drvLedsSet(DRV_LEDS_GREEN);
+		highLedGreen();
+		delay1();
+	}
+}
+
+void taskLed2(void *pvParameters){
+	for (;;) {
+		//drvLedsSet(DRV_LEDS_ORANGE, DRV_LEDS_TOGGLE);
+		// drvLedsSet(DRV_LEDS_RED);
+		highLedRed();
+		delay2();
+	}
+}
+
+
+int main(void){
+	CLOCK_EnableClock(kCLOCK_PortD);
+	CLOCK_EnableClock(kCLOCK_PortE);
+	//drvCpuClockInit(); /* init CPU clock */
+
+	//drvLedsInit(); /* init leds driver */
+
+	/* create task 1 */
+	xTaskCreate(taskLed1, "TaskLed1", configMINIMAL_STACK_SIZE, (void *)NULL, 1, NULL);
+
+	/* create task 2 */
+	xTaskCreate(taskLed2, "TaskLed2", configMINIMAL_STACK_SIZE, (void *)NULL, 1, NULL);
+
+	/* start the scheduler */
+	vTaskStartScheduler();
+
+	for(;;); /* should never reach here! */
+}
+

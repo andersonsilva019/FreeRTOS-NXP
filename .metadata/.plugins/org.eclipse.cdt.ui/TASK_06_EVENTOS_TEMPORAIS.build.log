@@ -1,0 +1,11 @@
+15:39:59 **** Incremental Build of configuration Debug for project TASK_06_EVENTOS_TEMPORAIS ****
+make -r -j4 all 
+make[1]: Nothing to be done for 'main-build'.
+Performing post-build steps
+arm-none-eabi-size "TASK_06_EVENTOS_TEMPORAIS.axf"; # arm-none-eabi-objcopy -v -O binary "TASK_06_EVENTOS_TEMPORAIS.axf" "TASK_06_EVENTOS_TEMPORAIS.bin" ; # checksum -p MKL43Z256xxx4 -d "TASK_06_EVENTOS_TEMPORAIS.bin";
+   text	   data	    bss	    dec	    hex	filename
+  12704	      8	  15076	  27788	   6c8c	TASK_06_EVENTOS_TEMPORAIS.axf
+ 
+
+15:39:59 Build Finished. 0 errors, 0 warnings. (took 583ms)
+

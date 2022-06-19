@@ -1,0 +1,8 @@
+/home/anderson/setimo-semestre/RTOS/praticas/TESTE_TOUCH_KL25/drivers/fsl_clock.h:584:20:CLOCK_EnableClock	24	static
+../source/TESTE_TOUCH_KL25.c:37:6:Touch_Init	8	static
+../source/TESTE_TOUCH_KL25.c:50:10:Touch_Scan_LH	16	static
+../source/TESTE_TOUCH_KL25.c:62:6:highLedGreen	8	static
+../source/TESTE_TOUCH_KL25.c:68:6:lowLedGreen	8	static
+../source/TESTE_TOUCH_KL25.c:74:6:highLedRed	8	static
+../source/TESTE_TOUCH_KL25.c:80:6:lowLedRed	8	static
+../source/TESTE_TOUCH_KL25.c:86:5:main	8	static

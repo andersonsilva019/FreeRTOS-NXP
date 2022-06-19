@@ -1,0 +1,55 @@
+#include "FreeRTOS.h"
+#include "task.h"
+#include "drivers.h"
+
+
+/* Freescale includes. */
+#include "fsl_device_registers.h"
+#include "fsl_debug_console.h"
+#include "board.h"
+
+#include "pin_mux.h"
+
+void delay(){
+	unsigned int i;
+
+	for(i = 0; i < 2000000; i++){
+		asm("nop");
+	}
+}
+
+void taskLed1(void *pvParameters){
+	for (;;) {
+		drvLedsSet(DRV_LEDS_GREEN, DRV_LEDS_TOGGLE);
+		delay();
+	}
+}
+
+void taskLed2(void *pvParameters){
+	for (;;) {
+		drvLedsSet(DRV_LEDS_ORANGE, DRV_LEDS_TOGGLE);
+		delay();
+	}
+}
+
+
+int main(void){
+
+	drvCpuClockInit(); /* init CPU clock */
+
+	drvLedsInit(); /* init leds driver */
+
+	/* create task 1 */
+	xTaskCreate(taskLed1, (signed char *)"TaskLed1",
+			configMINIMAL_STACK_SIZE, (void *)NULL, 1, NULL);
+
+	/* create task 2 */
+	xTaskCreate(taskLed2, (signed char *)"TaskLed2",
+			configMINIMAL_STACK_SIZE, (void *)NULL, 1, NULL);
+
+	/* start the scheduler */
+	vTaskStartScheduler();
+
+	for(;;); /* should never reach here! */
+}
+

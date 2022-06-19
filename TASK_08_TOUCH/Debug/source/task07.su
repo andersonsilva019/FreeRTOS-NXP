@@ -1,0 +1,12 @@
+/home/anderson/setimo-semestre/RTOS/praticas/TASK_07_QUEUE/drivers/fsl_clock.h:438:20:CLOCK_EnableClock	24	static
+../source/task07.c:28:6:vLedsButtons	8	static
+../source/task07.c:33:6:drvLedsSet	16	static
+../source/task07.c:49:6:highLedGreen	8	static
+../source/task07.c:55:6:lowLedGreen	8	static
+../source/task07.c:61:6:highLedRed	8	static
+../source/task07.c:67:6:lowLedRed	8	static
+../source/task07.c:73:6:taskLed	40	static
+../source/task07.c:83:5:drvButtonsSW1Pressed	8	static
+../source/task07.c:90:5:drvButtonsSW2Pressed	8	static
+../source/task07.c:97:6:taskButton	32	static
+../source/task07.c:116:5:main	24	static

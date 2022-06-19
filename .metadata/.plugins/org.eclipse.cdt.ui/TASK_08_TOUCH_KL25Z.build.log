@@ -1,0 +1,11 @@
+14:46:02 **** Incremental Build of configuration Debug for project TASK_08_TOUCH_KL25Z ****
+make -r -j4 all 
+make[1]: Nothing to be done for 'main-build'.
+Performing post-build steps
+arm-none-eabi-size "TASK_08_TOUCH_KL25Z.axf"; # arm-none-eabi-objcopy -v -O binary "TASK_08_TOUCH_KL25Z.axf" "TASK_08_TOUCH_KL25Z.bin" ; # checksum -p MKL25Z128xxx4 -d "TASK_08_TOUCH_KL25Z.bin";
+   text	   data	    bss	    dec	    hex	filename
+  17236	      8	  13040	  30284	   764c	TASK_08_TOUCH_KL25Z.axf
+ 
+
+14:46:02 Build Finished. 0 errors, 0 warnings. (took 642ms)
+

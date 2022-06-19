@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include "board.h"
+#include "pin_mux.h"
+#include "clock_config.h"
+#include "MKL25Z4.h"
+#include "fsl_debug_console.h"
+
+typedef struct {
+	uint32_t TSI_GENCS;
+	uint32_t TSI_DATA;
+	uint32_t TSI_TSHD;
+	uint32_t TSI_MODE;
+	uint32_t TSI_MUL0;
+	uint32_t TSI_MUL1;
+	uint32_t TSI_SINC;
+	uint32_t TSI_SSC0;
+	uint32_t TSI_SSC1;
+	uint32_t TSI_SSC2;
+}TSIRegs_t;
+
+#define TSI ((TSIRegs_t *) 0x400FF000)
+
+
+typedef struct {
+	unsigned int num;
+	unsigned int status;
+} LedInfo;
+
+#define LED_RED 	31
+#define LED_GREEN 	5
+#define ON 			1
+#define OFF 		0
+#define SW1			2
+#define SW2 		4
+
+/* Define the queue parameters. */
+#define QUEUE_LENGTH 1
+#define QUEUE_ITEM_SIZE sizeof(LedInfo)
+
+void highLedGreen(){
+	PORTD->PCR[LED_GREEN] |= (1 << 8);
+	GPIOD->PDDR |= (1 << LED_GREEN);
+	GPIOD->PCOR |= (1 << LED_GREEN);
+}
+
+void lowLedGreen(){
+	PORTD->PCR[LED_GREEN] |= (1 << 8);
+	GPIOD->PDDR |= (1 << LED_GREEN);
+	GPIOD->PSOR |= (1 << LED_GREEN);
+}
+
+void highLedRed(){
+	PORTE->PCR[LED_RED] |= (1 << 8);
+	GPIOE->PDDR |= (1 << LED_RED);
+	GPIOE->PCOR |= (1 << LED_RED);
+}
+
+void lowLedRed(){
+	PORTE->PCR[LED_RED] |= (1 << 8);
+	GPIOE->PDDR |= (1 << LED_RED);
+	GPIOE->PSOR |= (1 << LED_RED);
+}
+
+int main(void) {
+
+	CLOCK_EnableClock(kCLOCK_PortD);
+	CLOCK_EnableClock(kCLOCK_PortE);
+
+	vButtonsInit();
+
+	QueueHandle_t ledQueue = xQueueCreate(QUEUE_LENGTH, QUEUE_ITEM_SIZE);
+
+	if(ledQueue == NULL){
+		printf("The queue could not be created. \n");
+	}
+
+	/* create leds task */
+	xTaskCreate(taskLed, "TaskLed", configMINIMAL_STACK_SIZE, (void *)ledQueue, 1, NULL);
+	/* create buttons task */
+	xTaskCreate(taskButton, "TaskButton", configMINIMAL_STACK_SIZE, (void *)ledQueue, 1, NULL);
+	/* start the scheduler */
+	vTaskStartScheduler();
+
+	while(true){} /* should never reach here! */
+    return 0 ;
+}

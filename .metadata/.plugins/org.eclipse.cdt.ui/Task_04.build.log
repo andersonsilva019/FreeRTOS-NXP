@@ -1,0 +1,11 @@
+17:06:25 **** Incremental Build of configuration Debug for project Task_04 ****
+make -r -j4 all 
+make[1]: Nothing to be done for 'main-build'.
+Performing post-build steps
+arm-none-eabi-size "Task_04.axf"; # arm-none-eabi-objcopy -v -O binary "Task_04.axf" "Task_04.bin" ; # checksum -p MKL43Z256xxx4 -d "Task_04.bin";
+   text	   data	    bss	    dec	    hex	filename
+  12488	      8	  15084	  27580	   6bbc	Task_04.axf
+ 
+
+17:06:25 Build Finished. 0 errors, 0 warnings. (took 624ms)
+

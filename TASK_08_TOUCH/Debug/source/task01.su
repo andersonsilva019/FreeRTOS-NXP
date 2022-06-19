@@ -1,0 +1,6 @@
+/home/anderson/setimo-semestre/RTOS/praticas/Task_01/drivers/fsl_clock.h:438:20:CLOCK_EnableClock	24	static
+../source/task01.c:11:6:highLedGreen	8	static
+../source/task01.c:17:6:highLedRed	8	static
+../source/task01.c:23:6:taskLedGreen	16	static
+../source/task01.c:30:6:taskLedRed	16	static
+../source/task01.c:38:5:main	16	static

@@ -1,0 +1,9 @@
+/home/anderson/setimo-semestre/RTOS/praticas/TASK_06_EVENTOS_TEMPORAIS/drivers/fsl_clock.h:438:20:CLOCK_EnableClock	24	static
+../source/task06.c:24:6:vApplicationIdleHook	16	static
+../source/task06.c:31:6:highLedGreen	8	static
+../source/task06.c:37:6:lowLedGreen	8	static
+../source/task06.c:43:6:highLedRed	8	static
+../source/task06.c:49:6:lowLedRed	8	static
+../source/task06.c:55:6:taskLedGreen	16	static
+../source/task06.c:64:6:taskLedRed	32	static
+../source/task06.c:79:5:main	16	static

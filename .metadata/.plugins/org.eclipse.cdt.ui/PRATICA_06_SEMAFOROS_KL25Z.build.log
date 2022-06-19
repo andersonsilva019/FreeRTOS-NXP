@@ -1,0 +1,11 @@
+13:29:15 **** Incremental Build of configuration Debug for project PRATICA_06_SEMAFOROS_KL25Z ****
+make -r -j4 all 
+make[1]: Nothing to be done for 'main-build'.
+Performing post-build steps
+arm-none-eabi-size "PRATICA_06_SEMAFOROS_KL25Z.axf"; # arm-none-eabi-objcopy -v -O binary "PRATICA_06_SEMAFOROS_KL25Z.axf" "PRATICA_06_SEMAFOROS_KL25Z.bin" ; # checksum -p MKL25Z128xxx4 -d "PRATICA_06_SEMAFOROS_KL25Z.bin";
+   text	   data	    bss	    dec	    hex	filename
+  17920	      8	  13044	  30972	   78fc	PRATICA_06_SEMAFOROS_KL25Z.axf
+ 
+
+13:29:15 Build Finished. 0 errors, 0 warnings. (took 687ms)
+
