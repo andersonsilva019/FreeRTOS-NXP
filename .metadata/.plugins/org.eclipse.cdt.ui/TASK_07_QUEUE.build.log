@@ -1,4 +1,4 @@
-16:39:08 **** Build of configuration Debug for project TASK_07_QUEUE ****
+13:03:39 **** Incremental Build of configuration Debug for project TASK_07_QUEUE ****
 make -r -j4 all 
 make[1]: Nothing to be done for 'main-build'.
 Performing post-build steps
@@ -7,5 +7,5 @@ arm-none-eabi-size "TASK_07_QUEUE.axf"; # arm-none-eabi-objcopy -v -O binary "TA
   17240	      8	  15084	  32332	   7e4c	TASK_07_QUEUE.axf
  
 
-16:39:09 Build Finished. 0 errors, 0 warnings. (took 574ms)
+13:03:40 Build Finished. 0 errors, 0 warnings. (took 725ms)
 

@@ -6,7 +6,7 @@
  * Generated linker script file for MKL43Z256xxx4
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v11.5.0 [Build 7232] [2022-01-11] on 10 de jun de 2022 16:39:08
+ * MCUXpresso IDE v11.5.0 [Build 7232] [2022-01-11] on 20 de jun de 2022 13:03:39
  */
 
 INCLUDE "HELLO_RTOS_freertos_hello_Debug_library.ld"
